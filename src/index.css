@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN TOKENS — LIGHT
+   ============================================================ */
+:root {
+  --bg: #F7F5F0;
+  --bg-alt: #F1EEE7;
+  --surface: #FFFEFA;
+  --surface-elevated: #FFFFFF;
+
+  --text: #191816;
+  --text-secondary: #6F6B63;
+  --text-muted: #8A857B;
+
+  --border: #E6E1D8;
+  --border-focus: #B58A4A;
+
+  --accent: #B58A4A;
+  --accent-text: #8A6528;
+  --accent-subtle: rgba(181,138,74,0.10);
+  --accent-subtle-hover: rgba(181,138,74,0.18);
+
+  --success: #6F8F7A;
+  --success-bg: rgba(111,143,122,0.12);
+  --danger: #B65C52;
+  --danger-bg: rgba(182,92,82,0.12);
+  --info: #657A82;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 3px rgba(25,24,22,0.06), 0 1px 2px rgba(25,24,22,0.04);
+  --shadow-md: 0 4px 12px rgba(25,24,22,0.08), 0 2px 4px rgba(25,24,22,0.04);
+  --shadow-lg: 0 8px 24px rgba(25,24,22,0.10), 0 3px 8px rgba(25,24,22,0.05);
+}
+
+/* ============================================================
+   DESIGN TOKENS — DARK
+   ============================================================ */
+[data-theme="dark"] {
+  --bg: #1C1A17;
+  --bg-alt: #161411;
+  --surface: #242018;
+  --surface-elevated: #2C2820;
+
+  --text: #F0EDE6;
+  --text-secondary: #A89F93;
+  --text-muted: #6E6A62;
+
+  --border: #333028;
+  --border-focus: #C49B5A;
+
+  --accent: #C49B5A;
+  --accent-text: #D4B070;
+  --accent-subtle: rgba(196,155,90,0.12);
+  --accent-subtle-hover: rgba(196,155,90,0.20);
+
+  --success: #7FA98F;
+  --success-bg: rgba(127,169,143,0.14);
+  --danger: #C4716A;
+  --danger-bg: rgba(196,113,106,0.14);
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.20), 0 1px 2px rgba(0,0,0,0.14);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.28), 0 2px 4px rgba(0,0,0,0.16);
+  --shadow-lg: 0 8px 28px rgba(0,0,0,0.36), 0 3px 8px rgba(0,0,0,0.18);
+}
+
+/* ============================================================
+   BASE RESET
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+/* ============================================================
+   SCROLL CUSTOMIZATION
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ============================================================
+   FOCUS RING
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.font-display { font-family: 'Instrument Serif', Georgia, serif; }
+.serif-em { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; }
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes gentle-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes check-pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  65% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes progress-shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(200%); }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-spin-gentle { animation: gentle-spin 1.8s linear infinite; }
+.animate-fade-in { animation: fade-in 0.35s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-check-pop { animation: check-pop 0.45s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-slide-up { animation: slide-up 0.28s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   SCREEN READER
+   ============================================================ */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* ============================================================
+   DRAG-OVER STATE
+   ============================================================ */
+.dropzone-drag-over {
+  transform: scale(1.012);
+  border-color: var(--accent) !important;
+  background: var(--accent-subtle) !important;
+  box-shadow: 0 0 0 4px var(--accent-subtle), var(--shadow-lg) !important;
+}
+
+/* ============================================================
+   PROGRESS BAR SHIMMER
+   ============================================================ */
+.progress-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+  animation: progress-shimmer 1.4s ease infinite;
+}
+
+/* ============================================================
+   CANVAS CURSOR
+   ============================================================ */
+.signature-canvas { cursor: crosshair; touch-action: none; }
+
+/* ============================================================
+   PDF PAGE THUMBNAILS
+   ============================================================ */
+.pdf-thumb { 
+  border: 2px solid transparent;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+.pdf-thumb.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-subtle);
+}
+.pdf-thumb:hover { border-color: var(--border-focus); }
+
+/* ============================================================
+   TOAST NOTIFICATIONS
+   ============================================================ */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 360px;
+}
+.toast {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  box-shadow: var(--shadow-lg);
+  font-size: 14px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: slide-up 0.25s cubic-bezier(0.16,1,0.3,1) both;
+}
+.toast.success { border-left: 3px solid var(--success); }
+.toast.error   { border-left: 3px solid var(--danger); }
+.toast.info    { border-left: 3px solid var(--accent); }

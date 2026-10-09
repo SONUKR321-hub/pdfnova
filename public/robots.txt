@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sonukr321-hub.github.io/pdfnova/sitemap.xml
