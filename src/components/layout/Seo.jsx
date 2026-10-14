@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-const SITE_URL = 'https://sonukr321-hub.github.io/pdfnova'
+const SITE_URL = 'https://pdfediter.in'
 
 const PAGE_SEO = {
   '/': {
